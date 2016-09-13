@@ -1,6 +1,6 @@
 Tinytest.add('normal route', function(test) {
   var path = "/" + Random.id();
-  Picker.route(path, function(params, req, res) {
+  FinePicker.route(path, function(params, req, res) {
     res.end("done");
   });
 
@@ -11,7 +11,7 @@ Tinytest.add('normal route', function(test) {
 Tinytest.add('with params', function(test) {
   var id = Random.id();
   var path = "/post/:id";
-  Picker.route(path, function(params, req, res) {
+  FinePicker.route(path, function(params, req, res) {
     res.end(params.id);
   });
 
@@ -21,7 +21,7 @@ Tinytest.add('with params', function(test) {
 
 Tinytest.add('filter only POST', function(test) {
   var path = "/" + Random.id();
-  var postRoutes = Picker.filter(function(req, res) {
+  var postRoutes = FinePicker.filter(function(req, res) {
     return req.method == "POST";
   });
 
@@ -38,7 +38,7 @@ Tinytest.add('filter only POST', function(test) {
 
 Tinytest.add('query strings', function(test) {
   var path = "/" + Random.id();
-  Picker.route(path, function(params, req, res) {
+FinePicker.route(path, function(params, req, res) {
     res.end("" + params.query.aa);
   });
 
@@ -49,14 +49,14 @@ Tinytest.add('query strings', function(test) {
 Tinytest.add('middlewares', function(test) {
   var path = "/" + Random.id();
 
-  Picker.middleware(function(req, res, next) {
+  FinePicker.middleware(function(req, res, next) {
     setTimeout(function() {
       req.middlewarePass = "ok";
       next();
     }, 100);
   });
 
-  Picker.route(path, function(params, req, res) {
+  FinePicker.route(path, function(params, req, res) {
     res.end(req.middlewarePass);
   });
 
@@ -67,7 +67,7 @@ Tinytest.add('middlewares', function(test) {
 Tinytest.add('middlewares - with filtered routes', function(test) {
   var path = "/" + Random.id() + "/coola";
 
-  var routes = Picker.filter(function(req, res) {
+  var routes = FinePicker.filter(function(req, res) {
     var matched = /coola/.test(req.url);
     return matched;
   });

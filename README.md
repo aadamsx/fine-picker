@@ -1,20 +1,20 @@
 [![](https://api.travis-ci.org/meteorhacks/picker.svg)](https://travis-ci.org/meteorhacks/picker)
 
-# Picker - Server Side Router for Meteor
+# FinePicker - Server Side Router for Meteor
 
 Picker is an easy to use server side router for Meteor. This router respect others. So, you can use Iron Router and other routers and middlewares along side with this.
 
 ## Install
 
 ~~~
-meteor add meteorhacks:picker
+meteor add aadams:fine-picker
 ~~~
 
 ## Getting Started
 
 ~~~js
 
-Picker.route('/post/:_id', function(params, req, res, next) {
+FinePicker.route('/post/:_id', function(params, req, res, next) {
   var post = Posts.findOne(params._id);
   res.end(post.content);
 });
@@ -34,7 +34,7 @@ This is an unique functionality of this router. See following example:
 Let's say we need to handle only `POST` requests. This is how you can do it with `Picker`.
 
 ~~~js
-var postRoutes = Picker.filter(function(req, res) {
+var postRoutes = FinePicker.filter(function(req, res) {
   // you can write any logic you want.
   // but this callback does not run inside a fiber
   // at the end, you must return either true or false
@@ -59,8 +59,8 @@ var bodyParser = Meteor.npmRequire( 'body-parser');
 
 // Add two middleware calls. The first attempting to parse the request body as
 // JSON data and the second as URL encoded data.
-Picker.middleware( bodyParser.json() );
-Picker.middleware( bodyParser.urlencoded( { extended: false } ) );
+FinePicker.middleware( bodyParser.json() );
+FinePicker.middleware( bodyParser.urlencoded( { extended: false } ) );
 ~~~
 
 You can use middlewares on sub routes as well.

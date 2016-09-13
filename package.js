@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'meteorhacks:picker',
+  name: 'aadams:fine-picker',
   summary: 'Server Side Router for Meteor',
-  version: '1.0.4',
-  git: 'https://github.com/meteorhacks/picker.git'
+  version: '1.0.0',
+  git: 'https://github.com/aadamsx/fine-picker'
 });
 
 Npm.depends({
@@ -11,7 +11,7 @@ Npm.depends({
 
 Package.onUse(function(api) {
   configurePackage(api);
-  api.export(['Picker']);
+  api.export(['FinePicker']);
 });
 
 Package.onTest(function(api) {
